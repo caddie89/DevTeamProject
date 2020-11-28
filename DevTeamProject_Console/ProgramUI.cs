@@ -150,9 +150,9 @@ namespace DevTeamProject_Console
                     $"Developer Name: {developerInfo.DevName}\n");
             }
 
-            Console.WriteLine($"\nEnter the ID of the Developer you would like to add to {newTeam.DevTeamName} (otherwise enter '0').");
-            string teamMemberID = Console.ReadLine();
-            newTeam.DevTeamMemberID = int.Parse(teamMemberID);
+                Console.WriteLine($"\nEnter the ID of the Developer you would like to add to {newTeam.DevTeamName} (otherwise enter '0').");
+                string teamMemberID = Console.ReadLine();
+                newTeam.DevTeamMemberID = int.Parse(teamMemberID);
 
             _devTeamRepo.AddTeamToList(newTeam);
         }
@@ -361,10 +361,14 @@ namespace DevTeamProject_Console
             DeveloperInformation developer1 = new DeveloperInformation(12345, "Jon Snow", true);
             DeveloperInformation developer2 = new DeveloperInformation(12346, "Daenerys Targaryen", true);
             DeveloperInformation developer3 = new DeveloperInformation(12347, "Cersei Lannister", false);
+            DeveloperInformation developer4 = new DeveloperInformation(12348, "Robert Baratheon", false);
+            DeveloperInformation developer5 = new DeveloperInformation(12349, "Margaery Tyrell", true);
 
             _developerRepo.AddDevToList(developer1);
             _developerRepo.AddDevToList(developer2);
             _developerRepo.AddDevToList(developer3);
+            _developerRepo.AddDevToList(developer4);
+            _developerRepo.AddDevToList(developer5);
         }
 
         private void SeedTeamList()

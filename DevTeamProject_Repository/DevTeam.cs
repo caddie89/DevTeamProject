@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DevTeamsProject
 { 
     public class DevTeam
-    {
+    { 
         public int TeamID { get; set; }
         public string DevTeamName { get; set; }
         public int DevTeamMemberID { get; set; }
