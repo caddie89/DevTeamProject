@@ -37,8 +37,9 @@ namespace DevTeamProject_Console
                     "9.  Update Existing Team\n" +                                                          //Started (runs) - ADD MULTIPLE DEVS AT ONCE
                     "10. Delete Existing Developer\n" +                                                     //Done
                     "11. Delete Existing Team\n" +
-                    "12. Add Developers to Team\n" +                                                          //Done
-                    "13. Exit");
+                    "12. Delete Developers from Team\n" +
+                    "13. Add Developers to Team\n" +                                                          //Done
+                    "14. Exit");
 
                 string input = Console.ReadLine();
 
@@ -78,9 +79,12 @@ namespace DevTeamProject_Console
                         DeleteTeam();
                         break;
                     case "12":
-                        AddDevelopersToTeam();
+                        DeleteDevelopersFromTeam();
                         break;
                     case "13":
+                        AddDevelopersToTeam();
+                        break;
+                    case "14":
                         Console.WriteLine("Goodbye.");
                         keepRunning = false;
                         break;
@@ -255,9 +259,20 @@ namespace DevTeamProject_Console
             DevTeam teamID = _devTeamRepo.GetTeamByID(idAsInt);
             if (teamID != null)
             {
+                string developers = "";
+                foreach (var i in teamID.Developers)
+                {
+                    var devInfo = _developerRepo.GetDeveloperByID(i);
+                    if (devInfo != null)
+                    {
+                        developers = developers + devInfo.DevID + ": " + devInfo.DevName + "\n";
+                    }
+                }
+
                 Console.WriteLine($"\nTeam ID: {teamID.TeamID}\n" +
                    $"Team Name: {teamID.DevTeamName}\n" +
-                   $"Team Members(s): {string.Join(";", teamID.Developers.ToArray())}\n");
+                   $"Team Members(s): {string.Join(";", teamID.Developers.ToArray())}\n" +
+                    developers);
             }
             else
             {
@@ -435,37 +450,54 @@ namespace DevTeamProject_Console
             string inputAsString2 = Console.ReadLine();
             int teamID = int.Parse(inputAsString2);
 
-            
-
-            
-
             _devTeamRepo.AddDeveloperToTeam(teamID, listOfDevelopersID);
 
-            //bool keepAdding = true;
-            //        while (keepAdding)
-            //        {
-            //        Console.WriteLine("\nWould you like to add another Developer to this Team (yes/no)?");
-            //        string userInput = Console.ReadLine().ToLower();
+        }
+        //Delete Developers from Team
+        private void DeleteDevelopersFromTeam()
+        {
+            ViewAllTeams();
 
-            //        if (userInput == "yes")
-            //        {
-            //            Console.WriteLine("\nAdd another Developer ID to Team.");
-            //            string newTeamMemberID = Console.ReadLine();
-            //            newTeam.DevTeamMember = int.Parse(newTeamMemberID);
-            //            listOfTeamMemberID.Add(newTeamMemberID);
-            //        }
-            //        else
-            //        {
-            //            keepAdding = false;
-            //            Menu();
-            //        }
-            //    }
-            //        foreach (var user in listOfTeamMemberID)
-            //        {
-            //            Console.WriteLine(user);
-            //        }
-            //List<string> listOfDevIDs = new List<string>();
-            //listOfDevIDs.Add(teamMemberID);
+            Console.WriteLine("Enter a valid Team ID:");
+            string inputAsString2 = Console.ReadLine();
+            int idAsInt = int.Parse(inputAsString2);
+
+            DevTeam teamID = _devTeamRepo.GetTeamByID(idAsInt);
+            if (teamID != null)
+            {
+                Console.WriteLine($"\nTeam ID: {teamID.TeamID}\n" +
+                   $"Team Name: {teamID.DevTeamName}\n" +
+                   $"Team Members(s): {string.Join(";", teamID.Developers.ToArray())}\n");
+
+                List<int> listOfDevelopersID = new List<int>();
+
+                bool keepAdding = true;
+                while (keepAdding)
+                {
+                    keepAdding = false;
+
+                    Console.WriteLine("Enter a valid Developer ID:");
+                    string inputAsString = Console.ReadLine();
+                    int devID = int.Parse(inputAsString);
+
+                    listOfDevelopersID.Add(devID);
+
+                    Console.WriteLine("Would you like to add another Developer to this Team (yes/no)?");
+                    string userInput = Console.ReadLine().ToLower();
+
+                    if (userInput == "yes")
+                    {
+                        keepAdding = true;
+                    }
+                }
+
+                _devTeamRepo.RemoveDevelopersFromTeam(idAsInt, listOfDevelopersID);
+            }
+            else
+            {
+                Console.WriteLine("No Team identified by that ID number.");
+            }
+
         }
         //Delete Existing Team
         private void DeleteTeam()
@@ -504,13 +536,13 @@ namespace DevTeamProject_Console
 
         private void SeedTeamList()
         {
-            DevTeam team1 = new DevTeam(01, "House Stark", new List<int> { 12345 }); //Add another by adding a comma                                                                                                                              inside curly brackets
-            //DevTeam team2 = new DevTeam(02, "House Targaryen", new List<DeveloperInformation> { _developerRepo.GetDeveloperByID(12346) });
-            //DevTeam team3 = new DevTeam(03, "House Lannister", new List<DeveloperInformation> { _developerRepo.GetDeveloperByID(12347) });
+            DevTeam team1 = new DevTeam(01, "House Stark", new List<int> { 12345 });                                          
+            DevTeam team2 = new DevTeam(02, "House Targaryen", new List<int> { 12346 });
+            DevTeam team3 = new DevTeam(03, "House Lannister", new List<int> { 12347 });
 
             _devTeamRepo.AddTeamToList(team1);
-            //_devTeamRepo.AddTeamToList(team2);
-            //_devTeamRepo.AddTeamToList(team3);
+            _devTeamRepo.AddTeamToList(team2);
+            _devTeamRepo.AddTeamToList(team3);
         }
     }
 }

@@ -53,8 +53,19 @@ namespace DevTeamsProject
                 return false;
             }
         }
-
-        //Remove Team Member
+        //Remove Developer from Team
+        public void RemoveDevelopersFromTeam(int teamId, List<int> developer)
+        {
+            //Search for the team
+            var teams = GetTeamByID(teamId);
+            if (teams != null)
+            {
+                foreach (var i in developer)
+                {
+                    teams.Developers.RemoveAll(item => item == i);                          //This lambda searches for the item with value "i"
+                }
+            }
+        }
 
         //DevTeam Delete
         public bool RemoveTeamFromList(int id)
