@@ -437,13 +437,13 @@ namespace DevTeamProject_Console
 
         private void SeedTeamList()
         {
-            DevTeam team1 = new DevTeam(01, "House Stark", new List<DeveloperInformation> { _developerRepo.GetDeveloperByID(12345) }); //Add another by adding a comma                                                                                                                              inside curly brackets
-            DevTeam team2 = new DevTeam(02, "House Targaryen", new List<DeveloperInformation> { _developerRepo.GetDeveloperByID(12346) });
-            DevTeam team3 = new DevTeam(03, "House Lannister", new List<DeveloperInformation> { _developerRepo.GetDeveloperByID(12347) });
+            //DevTeam team1 = new DevTeam(01, "House Stark", new List<DeveloperInformation> { _developerRepo.GetDeveloperByID(12345) }); //Add another by adding a comma                                                                                                                              inside curly brackets
+            //DevTeam team2 = new DevTeam(02, "House Targaryen", new List<DeveloperInformation> { _developerRepo.GetDeveloperByID(12346) });
+            //DevTeam team3 = new DevTeam(03, "House Lannister", new List<DeveloperInformation> { _developerRepo.GetDeveloperByID(12347) });
 
-            _devTeamRepo.AddTeamToList(team1);
-            _devTeamRepo.AddTeamToList(team2);
-            _devTeamRepo.AddTeamToList(team3);
+            //_devTeamRepo.AddTeamToList(team1);
+            //_devTeamRepo.AddTeamToList(team2);
+            //_devTeamRepo.AddTeamToList(team3);
         }
     }
 }

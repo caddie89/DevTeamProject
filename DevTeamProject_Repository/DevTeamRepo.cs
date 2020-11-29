@@ -17,18 +17,23 @@ namespace DevTeamsProject
             _devTeams.Add(team);
         }
         //Create Team Member
-        public void AddMemberToTeam(DeveloperInformation developer)
+        public void AddDeveloperToTeam(int teamId, DeveloperInformation developer)
         {
-            _devDirectory.Add(developer);
-        }
-        //DevTeam Read
-        public List<DevTeam> GetTeamList()
-        {
-            return _devTeams;
-        }
+            //Search for the team
+            var teams = GetTeamByID(teamId);
+            if (teams != null)
+            {
+                //add to dev list
+                teams.Developers.Add(developer);
+            }
+            //DevTeam Read
+            public List<DevTeam> GetTeamList()
+            {
+                return _devTeams;
+            }
 
-        //DevTeam Update
-        public bool UpdateExistingTeam(int originalTeam, DevTeam newTeam)
+            //DevTeam Update
+            public bool UpdateExistingTeam(int originalTeam, DevTeam newTeam)
         {
             //Find the content
             DevTeam existingTeam = GetTeamByID(originalTeam);
@@ -46,11 +51,6 @@ namespace DevTeamsProject
             }
         }
 
-        //Add Team Member
-        //public void AddMemberToTeam(DeveloperInformation member)
-        //{
-        //    _devMember.Add(member);      
-        //}
         //Remove Team Member
 
         //DevTeam Delete
