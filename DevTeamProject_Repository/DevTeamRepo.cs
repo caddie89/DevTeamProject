@@ -9,31 +9,34 @@ namespace DevTeamsProject
     public class DevTeamRepo
     {
         private readonly List<DevTeam> _devTeams = new List<DevTeam>();
-        private readonly List<DeveloperInformation> _devDirectory = new List<DeveloperInformation>();
+        //private readonly List<DeveloperInformation> _devDirectory = new List<DeveloperInformation>();
 
         //Create Team
         public void AddTeamToList(DevTeam team)
         {
             _devTeams.Add(team);
         }
+
         //Create Team Member
-        public void AddDeveloperToTeam(int teamId, DeveloperInformation developer)
+        public void AddDeveloperToTeam(int teamId, List<int> developer)
         {
             //Search for the team
             var teams = GetTeamByID(teamId);
             if (teams != null)
             {
                 //add to dev list
-                teams.Developers.Add(developer);
+                teams.Developers.AddRange(developer);
             }
-            //DevTeam Read
-            public List<DevTeam> GetTeamList()
+        }
+
+       //DevTeam Read
+       public List<DevTeam> GetTeamList()
             {
                 return _devTeams;
             }
 
-            //DevTeam Update
-            public bool UpdateExistingTeam(int originalTeam, DevTeam newTeam)
+        //DevTeam Update
+        public bool UpdateExistingTeam(int originalTeam, DevTeam newTeam)
         {
             //Find the content
             DevTeam existingTeam = GetTeamByID(originalTeam);
