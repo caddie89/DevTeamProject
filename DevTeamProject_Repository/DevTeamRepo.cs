@@ -9,15 +9,18 @@ namespace DevTeamsProject
     public class DevTeamRepo
     {
         private readonly List<DevTeam> _devTeams = new List<DevTeam>();
+        private readonly List<DeveloperInformation> _devDirectory = new List<DeveloperInformation>();
 
-        //DevTeam Create
-
-        //Create Dev Team
+        //Create Team
         public void AddTeamToList(DevTeam team)
         {
             _devTeams.Add(team);
         }
-
+        //Create Team Member
+        public void AddMemberToTeam(DeveloperInformation developer)
+        {
+            _devDirectory.Add(developer);
+        }
         //DevTeam Read
         public List<DevTeam> GetTeamList()
         {
@@ -25,7 +28,6 @@ namespace DevTeamsProject
         }
 
         //DevTeam Update
-
         public bool UpdateExistingTeam(int originalTeam, DevTeam newTeam)
         {
             //Find the content
@@ -35,7 +37,6 @@ namespace DevTeamsProject
             {
                 existingTeam.TeamID = newTeam.TeamID;
                 existingTeam.DevTeamName = newTeam.DevTeamName;
-                existingTeam.DevTeamMemberID = newTeam.DevTeamMemberID;
 
                 return true;
             }
@@ -45,8 +46,14 @@ namespace DevTeamsProject
             }
         }
 
-        //DevTeam Delete
+        //Add Team Member
+        //public void AddMemberToTeam(DeveloperInformation member)
+        //{
+        //    _devMember.Add(member);      
+        //}
+        //Remove Team Member
 
+        //DevTeam Delete
         public bool RemoveTeamFromList(int id)
         {
             DevTeam team = GetTeamByID(id);

@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 namespace DevTeamsProject
 { 
     public class DevTeam
-    { 
+    {
         public int TeamID { get; set; }
         public string DevTeamName { get; set; }
-        public int DevTeamMemberID { get; set; }
+        public List<DeveloperInformation> Developers { get; set; } = new List<DeveloperInformation>();
 
         public DevTeam() { }
 
-        public DevTeam(int teamID, string devTeamName, int devTeamMemberID)    
+        public DevTeam(int teamID, string devTeamName, List<DeveloperInformation> devTeamMember)    
         {
             TeamID = teamID;
             DevTeamName = devTeamName;
-            DevTeamMemberID = devTeamMemberID;
+            Developers = devTeamMember;
         }
     }
 }
