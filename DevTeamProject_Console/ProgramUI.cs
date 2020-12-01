@@ -146,7 +146,7 @@ namespace DevTeamProject_Console
             DevTeam newTeam = new DevTeam();
 
             //Team ID
-            Console.WriteLine("Assign a unique 2-digit Team ID (4 would be 04):");
+            Console.WriteLine("Assign a unique 2-digit Team ID:");
             string teamID = Console.ReadLine();
             newTeam.TeamID = int.Parse(teamID);
 
@@ -201,7 +201,7 @@ namespace DevTeamProject_Console
                 }
             }
 
-            Console.WriteLine("\nEnter a valid Team ID:");
+            Console.WriteLine("\nEnter a valid 2-digit Team ID:");
             string inputAsString2 = Console.ReadLine();
             int teamID = int.Parse(inputAsString2);
 
@@ -242,7 +242,7 @@ namespace DevTeamProject_Console
                 }
             }
 
-            Console.WriteLine("To see additional information about a Team, enter its unique 2-digit ID (for 2, enter 02):");
+            Console.WriteLine("To see additional information about a Team, enter its unique 2-digit ID:");
             string idAsString = Console.ReadLine();
             int idAsInt = int.Parse(idAsString);
 
@@ -295,7 +295,7 @@ namespace DevTeamProject_Console
         {
             Console.Clear();
 
-            Console.WriteLine("Enter a Teams's unique 2-digit ID (for 2, enter 02):");
+            Console.WriteLine("Enter a Teams's unique 2-digit ID:");
             string idAsString = Console.ReadLine();
             int idAsInt = int.Parse(idAsString);
 
@@ -349,7 +349,7 @@ namespace DevTeamProject_Console
         {
             ViewAllDevs();
 
-            Console.WriteLine("Enter the ID of the Developer you'd like to update.");
+            Console.WriteLine("Enter the ID of the Developer you'd like to update:");
             int oldDeveloperID = Convert.ToInt32(Console.ReadLine());
 
             DeveloperInformation newDeveloper = new DeveloperInformation();
@@ -386,12 +386,12 @@ namespace DevTeamProject_Console
 
             DevTeam newTeam = new DevTeam();
 
-            Console.WriteLine("Enter the ID of the Team you'd like to update (4 would be 04).");
+            Console.WriteLine("Enter the ID of the Team you'd like to update:");
             int oldTeamID = Convert.ToInt32(Console.ReadLine());
             DevTeam oldTeam = _devTeamRepo.GetTeamByID(oldTeamID);
 
             //Team ID
-            Console.WriteLine("\nAssign a unique 2-digit Team ID (4 would be 04):");
+            Console.WriteLine("\nAssign a unique 2-digit Team ID:");
             string TeamID = Console.ReadLine();
             newTeam.TeamID = int.Parse(TeamID);
             oldTeam.TeamID = newTeam.TeamID;
@@ -425,7 +425,7 @@ namespace DevTeamProject_Console
         {
             ViewAllTeams();
 
-            Console.WriteLine("Enter a valid Team ID.");
+            Console.WriteLine("Enter a valid 2-digit Team ID:");
             string inputAsString2 = Console.ReadLine();
             int idAsInt = int.Parse(inputAsString2);
 
@@ -443,7 +443,7 @@ namespace DevTeamProject_Console
                 {
                     keepAdding = false;
 
-                    Console.WriteLine("Enter the ID of the Developer that you would like to remove.");
+                    Console.WriteLine("Enter the 5-digit ID of the Developer that you would like to remove:");
                     string inputAsString = Console.ReadLine();
                     int devID = int.Parse(inputAsString);
 
@@ -471,7 +471,7 @@ namespace DevTeamProject_Console
         {
             ViewAllTeams();
 
-            Console.WriteLine("Enter the ID of the Team that you would like to remove.");
+            Console.WriteLine("Enter the ID of the Team that you would like to remove:");
             string inputAsString = Console.ReadLine();
             int inputAsInt = int.Parse(inputAsString);
 
@@ -503,9 +503,9 @@ namespace DevTeamProject_Console
 
         private void SeedTeamList()
         {
-            DevTeam team1 = new DevTeam(01, "House Stark", new List<int> { 12345 });
-            DevTeam team2 = new DevTeam(02, "House Targaryen", new List<int> { 12346 });
-            DevTeam team3 = new DevTeam(03, "House Lannister", new List<int> { 12347 });
+            DevTeam team1 = new DevTeam(10, "House Stark", new List<int> { 12345 });
+            DevTeam team2 = new DevTeam(11, "House Targaryen", new List<int> { 12346 });
+            DevTeam team3 = new DevTeam(12, "House Lannister", new List<int> { 12347 });
 
             _devTeamRepo.AddTeamToList(team1);
             _devTeamRepo.AddTeamToList(team2);
