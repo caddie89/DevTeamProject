@@ -64,7 +64,6 @@ namespace DevTeamsProject
             }
 
         }
-
         //Developer Helper (Get Developer by ID)
         public DeveloperInformation GetDeveloperByID(int id)
         {

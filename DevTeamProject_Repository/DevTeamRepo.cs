@@ -9,7 +9,6 @@ namespace DevTeamsProject
     public class DevTeamRepo
     {
         private readonly List<DevTeam> _devTeams = new List<DevTeam>();
-        //private readonly List<DeveloperInformation> _devDirectory = new List<DeveloperInformation>();
 
         //Create Team
         public void AddTeamToList(DevTeam team)
@@ -17,18 +16,19 @@ namespace DevTeamsProject
             _devTeams.Add(team);
         }
 
-        //Create Team Member
+        //Add Team Member to Team
         public void AddDeveloperToTeam(int teamId, List<int> developer)
         {
             //Search for the team
             var teams = GetTeamByID(teamId);
             if (teams != null)
             {
+                if (teams.Developers == null)
+                    teams.Developers = new List<int>();
                 //add to dev list
                 teams.Developers.AddRange(developer);
             }
         }
-
        //DevTeam Read
        public List<DevTeam> GetTeamList()
             {
@@ -45,6 +45,7 @@ namespace DevTeamsProject
             {
                 existingTeam.TeamID = newTeam.TeamID;
                 existingTeam.DevTeamName = newTeam.DevTeamName;
+                //existingTeam.Developers = newTeam.Developers;
 
                 return true;
             }

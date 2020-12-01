@@ -10,7 +10,6 @@ namespace DevTeamsProject
     {
         public int TeamID { get; set; }
         public string DevTeamName { get; set; }
-        //public List<DeveloperInformation> Developers { get; set; } = new List<DeveloperInformation>();
         public List<int> Developers { get; set; }
 
         public DevTeam() { }
